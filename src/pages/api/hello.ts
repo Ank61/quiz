@@ -19,7 +19,16 @@ export default async function handler(
       console.error('Error creating user:', error);
       res.status(500).json({ message: 'Internal Server Error' });
     }
-  } else {
+  } else if  (req.method === 'GET') {
+    try {
+      const pyqData = await pyq.find({ year: 2011 });
+      res.status(200).json(pyqData);
+    } catch (error) {
+      console.error('Error fetching pyq data:', error);
+      res.status(500).json({ message: 'Internal Server Error' });
+    }
+  }
+  else{
     res.status(405).json({ message: 'Method Not Allowed' });
   }
 }
