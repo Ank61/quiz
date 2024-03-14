@@ -5,7 +5,7 @@ import NavigateNextIcon from "@mui/icons-material/NavigateNext";
 import ArrowBackIosIcon from "@mui/icons-material/ArrowBackIos";
 import { fetchPYQuestions } from "@/services/allAPI";
 
-function YearQuestions() {
+function YearQuestions({yearData} : any) {
   const [questionIndex, setQuestionIndex] = useState<any>(0);
   const router = useRouter();
   const { year } = router.query;
@@ -73,14 +73,13 @@ export default YearQuestions;
 
 export async function getServerSideProps(context : any) {
   const { params } = context;
-  const productId = params.productId;
-
-  // Fetch product details based on productId
-  const productData = await fetchPYQuestions(year);
-
+  const fetchYear = params.year;
+  const yearData :any = await fetchPYQuestions(fetchYear);
+  console.log("Response" , yearData);
+  const checkYearData = yearData ? yearData : null; 
   return {
     props: {
-      productData
+      checkYearData
     }
   };
 }

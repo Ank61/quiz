@@ -14,4 +14,4 @@ const previousYearPaper = new mongoose.Schema({
   ],
 });
 
-export default mongoose.models.PYQ || mongoose.model("PYQ", previousYearPaper);
+export default mongoose.models.pyq || mongoose.model("previousyearpaper", previousYearPaper);
