@@ -3,13 +3,12 @@ import { MainNavbar, MobileResponsiveNav } from "@/components/navbar";
 import { useState } from "react";
 import NavigateNextIcon from "@mui/icons-material/NavigateNext";
 import ArrowBackIosIcon from "@mui/icons-material/ArrowBackIos";
-import { fetchPYQuestions } from "@/services/allAPI";
+import  fetchPYQuestions  from "@/services/allAPI";
 
-function YearQuestions({yearData} : any) {
+function YearQuestions({ checkYearData }: any) {
   const [questionIndex, setQuestionIndex] = useState<any>(0);
   const router = useRouter();
   const { year } = router.query;
-
   const testArray = [
     { question: "Question 1 ssfbksjdbfskjbdfksjbfdjskdbfksjbfdksjbf" },
     { question: "Question 2 ssfbksjdbfskjbdfksjbfdjskdbfksjbfdksjbf" },
@@ -71,15 +70,14 @@ function YearQuestions({yearData} : any) {
 
 export default YearQuestions;
 
-export async function getServerSideProps(context : any) {
+export async function getServerSideProps(context: any) {
   const { params } = context;
   const fetchYear = params.year;
-  const yearData :any = await fetchPYQuestions(fetchYear);
-  console.log("Response" , yearData);
-  const checkYearData = yearData ? yearData : null; 
+  const yearData: any = await fetchPYQuestions(fetchYear);
+  const checkYearData = yearData ? yearData?.result : null;
   return {
     props: {
-      checkYearData
-    }
+      checkYearData,
+    },
   };
 }
