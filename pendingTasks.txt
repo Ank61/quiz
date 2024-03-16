@@ -1,0 +1,17 @@
+Task List 
+
+a. Data Scraping : 
+  1. Add the questions extendable scraping for those question which have options to select from.
+  2. Correct scraping code to eliminate the empty object.
+
+
+
+
+b. Styling :
+  1. Add the bottom margin fixed.
+
+
+
+c. Feature :
+  1. Make response in a state for each question if I update the response it should update that response.
+  
